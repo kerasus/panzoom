@@ -498,6 +498,19 @@
             y = result.y;
             return setTransformWithEvent('panzoompan', opts);
         }
+        function calcZoomPanYShift(oldY, scale, toScale) {
+
+            var newScale = toScale / scale;
+            var elemHeight = elem.getBoundingClientRect().height * newScale;
+            var parentHeight = parent.getBoundingClientRect().height;
+            var gap = (( elemHeight / toScale - parentHeight ) / 2 );
+            var targetNew = -1*(gap / toScale);
+            var targetOld = -1*(gap / scale);
+            var oldShift = (oldY - targetOld);
+            var newY = targetNew + oldShift;
+
+            return newY;
+        }
         function zoom(toScale, zoomOptions) {
             var result = constrainScale(toScale, zoomOptions);
             var opts = result.opts;
@@ -507,6 +520,7 @@
             toScale = result.scale;
             var toX = x;
             var toY = y;
+            toY = calcZoomPanYShift(toX, toY, scale, toScale);
             if (opts.focal) {
                 // The difference between the point after the scale and the point before the scale
                 // plus the current translation after the scale
