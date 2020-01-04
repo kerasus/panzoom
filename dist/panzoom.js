@@ -520,7 +520,7 @@
             toScale = result.scale;
             var toX = x;
             var toY = y;
-            toY = calcZoomPanYShift(toX, toY, scale, toScale);
+            toY = calcZoomPanYShift(toY, scale, toScale);
             if (opts.focal) {
                 // The difference between the point after the scale and the point before the scale
                 // plus the current translation after the scale
