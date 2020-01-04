@@ -500,14 +500,14 @@
         }
         function calcZoomPanYShift(oldY, scale, toScale) {
 
-            var newScale = toScale / scale;
-            var elemHeight = elem.getBoundingClientRect().height * newScale;
-            var parentHeight = parent.getBoundingClientRect().height;
-            var gap = (( elemHeight / toScale - parentHeight ) / 2 );
-            var targetNew = -1*(gap / toScale);
-            var targetOld = -1*(gap / scale);
-            var oldShift = (oldY - targetOld);
-            var newY = targetNew + oldShift;
+            var newScale = toScale / scale,
+                elemHeight = elem.getBoundingClientRect().height * newScale,
+                parentHeight = parent.getBoundingClientRect().height,
+                gap = (( elemHeight / toScale - parentHeight ) / 2 ),
+                targetNew = -1*(gap / toScale),
+                targetOld = -1*(gap / scale),
+                oldShift = (oldY - targetOld),
+                newY = targetNew + oldShift;
 
             return newY;
         }
